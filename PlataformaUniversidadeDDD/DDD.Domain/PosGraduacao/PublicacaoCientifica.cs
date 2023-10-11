@@ -11,13 +11,11 @@ namespace DDD.Domain.PosGraduacao
     {
         [Key]
         public int PublicacaoId { get; set; }
-        [StringLength(50)]
         public string Titulo { get; set; }
         public DateTime DataPublicacao { get; set; }
-        [StringLength(50)]
         public string Conteudo { get; set; }
         public string Link { get; set; }
         public int ProjetoId { get; set; }
-        public Projeto Projeto { get; set; }
+        public Projeto? Projeto { get; set; }
     }
 }

@@ -23,10 +23,10 @@ namespace DDD.Application.Api.Controllers
             return Ok(_gradeRepository.GetGrades());
         }
 
-        [HttpGet("{seqCurso}/{disciplinaId}/{ano}/{etapa}")]
-        public ActionResult<Grade> GetById(int seqCurso, int disciplinaId, int ano, int etapa)
+        [HttpGet("{seqCurso}/{disciplinaId}")]
+        public ActionResult<Grade> GetById(int seqCurso, int disciplinaId)
         {
-            return Ok(_gradeRepository.GetGradeById(seqCurso, disciplinaId, ano, etapa));
+            return Ok(_gradeRepository.GetGradeById(seqCurso, disciplinaId));
         }
 
         [HttpPost]
@@ -35,7 +35,7 @@ namespace DDD.Application.Api.Controllers
         public ActionResult CreateAluno(Grade grade)
         {
             _gradeRepository.InsertGrade(grade);
-            return CreatedAtAction(nameof(GetById), new { seqCurso = grade.SeqCursoId, disciplinaId = grade.DisciplinaId, ano = grade.Ano, etapa = grade.Etapa }, grade);
+            return CreatedAtAction(nameof(GetById), new { seqCurso = grade.SeqCursoId, disciplinaId = grade.DisciplinaId }, grade);
         }
 
         [HttpPut]

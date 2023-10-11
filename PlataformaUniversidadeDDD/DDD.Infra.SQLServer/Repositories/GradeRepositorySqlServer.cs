@@ -19,9 +19,9 @@ namespace DDD.Infra.SQLServer.Repositories
             _context = context;
         }
 
-        public Grade GetGradeById(int seqCurso, int disciplinaId, int ano, int etapa)
+        public Grade GetGradeById(int seqCurso, int disciplinaId)
         {
-            var grade = _context.Grade.FirstOrDefault(g => g.SeqCursoId == seqCurso && g.DisciplinaId == disciplinaId && g.Ano == ano && g.Etapa == etapa);
+            var grade = _context.Grade.FirstOrDefault(g => g.SeqCursoId == seqCurso && g.DisciplinaId == disciplinaId);
             return grade;
         }
 

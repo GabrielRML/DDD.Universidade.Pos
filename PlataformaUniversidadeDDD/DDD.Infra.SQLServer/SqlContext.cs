@@ -20,11 +20,11 @@ namespace DDD.Infra.SQLServer
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<Matricula>().HasKey(g => new { g.SeqCursoId, g.AlunoId, g.MatriculaId });
+            modelBuilder.Entity<Matricula>().HasKey(g => new { g.SeqCursoId, g.AlunoId, g.MatriculaId});
 
-            modelBuilder.Entity<Grade>().HasKey(g => new { g.SeqCursoId, g.DisciplinaId, g.Ano, g.Etapa });
+            modelBuilder.Entity<Grade>().HasKey(g => new { g.SeqCursoId, g.DisciplinaId});
 
-            modelBuilder.Entity<Avaliacao>().HasKey(a => new { a.AvaliacaoId, a.AlunoId, a.ProfessorId, a.SeqCursoId, a.DisciplinaId, a.Ano, a.Etapa });
+            modelBuilder.Entity<ProjetoPesquisador>().HasKey(p => new { p.ProjetoId, p.PesquisadorId});
 
             modelBuilder.Entity<User>().UseTpcMappingStrategy();
             modelBuilder.Entity<User>().HasIndex(u => u.Cpf).IsUnique();
@@ -35,12 +35,11 @@ namespace DDD.Infra.SQLServer
 
         public DbSet<User> Users { get; set; }
         public DbSet<Aluno> Alunos { get; set; }
-        public DbSet<SituacaoMatricula> SituacaoMatricula { get; set; }
-        public DbSet<Avaliacao> Avaliacoes { get; set; }
         public DbSet<Professor> Professores { get; set; }
         public DbSet<Pesquisador> Pesquisadores { get; set; }
         public DbSet<Projeto> Projetos { get; set; }
         public DbSet<PublicacaoCientifica> PublicacoesCientificas { get; set; }
+        public DbSet<ProjetoPesquisador> ProjetoPesquisador { get; set; }
         public DbSet<Curso> Cursos { get; set; }
         public DbSet<SeqCurso> SeqCurso { get; set; }
         public DbSet<Disciplina> Disciplinas { get; set; }

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\DDD.Universidade\\PlataformaUniversidadeDDD\\DDD.Domain\\DDD.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\repos\\DDD.Universidade.Pos\\PlataformaUniversidadeDDD\\DDD.Domain\\DDD.Domain.csproj",
       "projectName": "DDD.Domain",
-      "projectPath": "C:\\Users\\User\\Source\\Repos\\DDD.Universidade\\PlataformaUniversidadeDDD\\DDD.Domain\\DDD.Domain.csproj",
+      "projectPath": "C:\\Users\\User\\source\\repos\\DDD.Universidade.Pos\\PlataformaUniversidadeDDD\\DDD.Domain\\DDD.Domain.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Source\\Repos\\DDD.Universidade\\PlataformaUniversidadeDDD\\DDD.Domain\\obj\\",
+      "outputPath": "C:\\Users\\User\\source\\repos\\DDD.Universidade.Pos\\PlataformaUniversidadeDDD\\DDD.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

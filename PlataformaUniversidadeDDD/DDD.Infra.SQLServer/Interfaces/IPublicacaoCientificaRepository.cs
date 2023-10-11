@@ -9,10 +9,10 @@ namespace DDD.Infra.SQLServer.Interfaces
 {
     public interface IPublicacaoCientificaRepository
     {
-        public List<PublicacaoCientifica> GetPublicacoes();
+        public List<PublicacaoCientifica> GetAll();
         public PublicacaoCientifica GetById(int publicacaoId);
-        public void InsertPublicacao(PublicacaoCientifica publicacao);
-        public void UpdatePublicacao(PublicacaoCientifica publicacao);
-        public void DeletePublicacao(PublicacaoCientifica publicacao);
+        public void Insert(PublicacaoCientifica publicacao);
+        public void Update(PublicacaoCientifica publicacao);
+        public void Delete(PublicacaoCientifica publicacao);
     }
 }

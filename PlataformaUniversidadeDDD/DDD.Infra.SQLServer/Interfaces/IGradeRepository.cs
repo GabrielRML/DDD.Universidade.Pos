@@ -10,7 +10,7 @@ namespace DDD.Infra.SQLServer.Interfaces
     public interface IGradeRepository
     {
         public List<Grade> GetGrades();
-        public Grade GetGradeById(int seqCurso, int disciplinaId, int ano, int etapa);
+        public Grade GetGradeById(int seqCurso, int disciplinaId);
         public void InsertGrade(Grade grade);
         public void UpdateGrade(Grade grade);
         public void DeleteGrade(Grade grade);

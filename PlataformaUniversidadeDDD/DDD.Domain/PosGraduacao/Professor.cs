@@ -1,4 +1,5 @@
-﻿using DDD.Domain.UserManagementContext;
+﻿using DDD.Domain.PosGraduacao;
+using DDD.Domain.UserManagementContext;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

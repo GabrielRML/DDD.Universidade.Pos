@@ -24,50 +24,6 @@ namespace DDD.Infra.SQLServer.Migrations
 
             modelBuilder.HasSequence("UserSequence");
 
-            modelBuilder.Entity("DDD.Domain.PosGraduacao.Avaliacao", b =>
-                {
-                    b.Property<int>("AvaliacaoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AlunoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProfessorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SeqCursoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DisciplinaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Ano")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Etapa")
-                        .HasColumnType("int");
-
-                    b.Property<string>("AvaliacaoName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<decimal>("Nota")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.HasKey("AvaliacaoId", "AlunoId", "ProfessorId", "SeqCursoId", "DisciplinaId", "Ano", "Etapa");
-
-                    b.HasIndex("AlunoId");
-
-                    b.HasIndex("DisciplinaId");
-
-                    b.HasIndex("ProfessorId");
-
-                    b.HasIndex("SeqCursoId");
-
-                    b.ToTable("Avaliacoes");
-                });
-
             modelBuilder.Entity("DDD.Domain.PosGraduacao.Curso", b =>
                 {
                     b.Property<int>("CursoId")
@@ -126,13 +82,7 @@ namespace DDD.Infra.SQLServer.Migrations
                     b.Property<int>("DisciplinaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Ano")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Etapa")
-                        .HasColumnType("int");
-
-                    b.HasKey("SeqCursoId", "DisciplinaId", "Ano", "Etapa");
+                    b.HasKey("SeqCursoId", "DisciplinaId");
 
                     b.HasIndex("DisciplinaId");
 
@@ -153,14 +103,9 @@ namespace DDD.Infra.SQLServer.Migrations
                     b.Property<DateTime>("DataMatricula")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("SituacaoMatriculaId")
-                        .HasColumnType("int");
-
                     b.HasKey("SeqCursoId", "AlunoId", "MatriculaId");
 
                     b.HasIndex("AlunoId");
-
-                    b.HasIndex("SituacaoMatriculaId");
 
                     b.ToTable("Matriculas");
                 });
@@ -176,9 +121,6 @@ namespace DDD.Infra.SQLServer.Migrations
                     b.Property<int>("AnosDuracao")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PesquisadorUserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ProjetoDescricao")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -189,9 +131,22 @@ namespace DDD.Infra.SQLServer.Migrations
 
                     b.HasKey("ProjetoId");
 
-                    b.HasIndex("PesquisadorUserId");
-
                     b.ToTable("Projetos");
+                });
+
+            modelBuilder.Entity("DDD.Domain.PosGraduacao.ProjetoPesquisador", b =>
+                {
+                    b.Property<int>("ProjetoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PesquisadorId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProjetoId", "PesquisadorId");
+
+                    b.HasIndex("PesquisadorId");
+
+                    b.ToTable("ProjetoPesquisador");
                 });
 
             modelBuilder.Entity("DDD.Domain.PosGraduacao.PublicacaoCientifica", b =>
@@ -204,8 +159,7 @@ namespace DDD.Infra.SQLServer.Migrations
 
                     b.Property<string>("Conteudo")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DataPublicacao")
                         .HasColumnType("datetime2");
@@ -219,8 +173,7 @@ namespace DDD.Infra.SQLServer.Migrations
 
                     b.Property<string>("Titulo")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PublicacaoId");
 
@@ -251,24 +204,6 @@ namespace DDD.Infra.SQLServer.Migrations
                     b.HasIndex("CursoId");
 
                     b.ToTable("SeqCurso");
-                });
-
-            modelBuilder.Entity("DDD.Domain.PosGraduacao.SituacaoMatricula", b =>
-                {
-                    b.Property<int>("SituacaoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SituacaoId"));
-
-                    b.Property<string>("NomeSituacao")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.HasKey("SituacaoId");
-
-                    b.ToTable("SituacaoMatricula");
                 });
 
             modelBuilder.Entity("DDD.Domain.UserManagementContext.User", b =>
@@ -352,41 +287,6 @@ namespace DDD.Infra.SQLServer.Migrations
                     b.ToTable("Professores");
                 });
 
-            modelBuilder.Entity("DDD.Domain.PosGraduacao.Avaliacao", b =>
-                {
-                    b.HasOne("DDD.Domain.PosGraduacao.Aluno", "Aluno")
-                        .WithMany()
-                        .HasForeignKey("AlunoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DDD.Domain.PosGraduacao.Disciplina", "Disciplina")
-                        .WithMany()
-                        .HasForeignKey("DisciplinaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DDD.Domain.PosGraduacaoContext.Professor", "Professor")
-                        .WithMany()
-                        .HasForeignKey("ProfessorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DDD.Domain.PosGraduacao.SeqCurso", "SeqCurso")
-                        .WithMany()
-                        .HasForeignKey("SeqCursoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Aluno");
-
-                    b.Navigation("Disciplina");
-
-                    b.Navigation("Professor");
-
-                    b.Navigation("SeqCurso");
-                });
-
             modelBuilder.Entity("DDD.Domain.PosGraduacao.Grade", b =>
                 {
                     b.HasOne("DDD.Domain.PosGraduacao.Disciplina", "Disciplina")
@@ -420,24 +320,28 @@ namespace DDD.Infra.SQLServer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DDD.Domain.PosGraduacao.SituacaoMatricula", "SituacaoMatricula")
-                        .WithMany()
-                        .HasForeignKey("SituacaoMatriculaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Aluno");
 
                     b.Navigation("SeqCurso");
-
-                    b.Navigation("SituacaoMatricula");
                 });
 
-            modelBuilder.Entity("DDD.Domain.PosGraduacao.Projeto", b =>
+            modelBuilder.Entity("DDD.Domain.PosGraduacao.ProjetoPesquisador", b =>
                 {
-                    b.HasOne("DDD.Domain.PosGraduacao.Pesquisador", null)
-                        .WithMany("Projetos")
-                        .HasForeignKey("PesquisadorUserId");
+                    b.HasOne("DDD.Domain.PosGraduacao.Pesquisador", "Pesquisador")
+                        .WithMany("ProjetoPesquisador")
+                        .HasForeignKey("PesquisadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DDD.Domain.PosGraduacao.Projeto", "Projeto")
+                        .WithMany("ProjetoPesquisador")
+                        .HasForeignKey("ProjetoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pesquisador");
+
+                    b.Navigation("Projeto");
                 });
 
             modelBuilder.Entity("DDD.Domain.PosGraduacao.PublicacaoCientifica", b =>
@@ -472,9 +376,14 @@ namespace DDD.Infra.SQLServer.Migrations
                     b.Navigation("Grade");
                 });
 
+            modelBuilder.Entity("DDD.Domain.PosGraduacao.Projeto", b =>
+                {
+                    b.Navigation("ProjetoPesquisador");
+                });
+
             modelBuilder.Entity("DDD.Domain.PosGraduacao.Pesquisador", b =>
                 {
-                    b.Navigation("Projetos");
+                    b.Navigation("ProjetoPesquisador");
                 });
 #pragma warning restore 612, 618
         }

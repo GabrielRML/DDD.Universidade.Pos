@@ -3531,11 +3531,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\DDD.Universidade\\PlataformaUniversidadeDDD\\DDD.Infra.SQLServer\\DDD.Infra.SQLServer.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\repos\\DDD.Universidade.Pos\\PlataformaUniversidadeDDD\\DDD.Infra.SQLServer\\DDD.Infra.SQLServer.csproj",
       "projectName": "DDD.Infra.SQLServer",
-      "projectPath": "C:\\Users\\User\\source\\repos\\DDD.Universidade\\PlataformaUniversidadeDDD\\DDD.Infra.SQLServer\\DDD.Infra.SQLServer.csproj",
+      "projectPath": "C:\\Users\\User\\source\\repos\\DDD.Universidade.Pos\\PlataformaUniversidadeDDD\\DDD.Infra.SQLServer\\DDD.Infra.SQLServer.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Source\\Repos\\DDD.Universidade\\PlataformaUniversidadeDDD\\DDD.Infra.SQLServer\\obj\\",
+      "outputPath": "C:\\Users\\User\\source\\repos\\DDD.Universidade.Pos\\PlataformaUniversidadeDDD\\DDD.Infra.SQLServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3552,8 +3552,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\User\\source\\repos\\DDD.Universidade\\PlataformaUniversidadeDDD\\DDD.Domain\\DDD.Domain.csproj": {
-              "projectPath": "C:\\Users\\User\\source\\repos\\DDD.Universidade\\PlataformaUniversidadeDDD\\DDD.Domain\\DDD.Domain.csproj"
+            "C:\\Users\\User\\source\\repos\\DDD.Universidade.Pos\\PlataformaUniversidadeDDD\\DDD.Domain\\DDD.Domain.csproj": {
+              "projectPath": "C:\\Users\\User\\source\\repos\\DDD.Universidade.Pos\\PlataformaUniversidadeDDD\\DDD.Domain\\DDD.Domain.csproj"
             }
           }
         }

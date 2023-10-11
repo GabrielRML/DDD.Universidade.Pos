@@ -105,16 +105,18 @@ namespace DDD.Infra.SQLServer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SituacaoMatricula",
+                name: "Projetos",
                 columns: table => new
                 {
-                    SituacaoId = table.Column<int>(type: "int", nullable: false)
+                    ProjetoId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NomeSituacao = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
+                    ProjetoName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProjetoDescricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AnosDuracao = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SituacaoMatricula", x => x.SituacaoId);
+                    table.PrimaryKey("PK_Projetos", x => x.ProjetoId);
                 });
 
             migrationBuilder.CreateTable(
@@ -139,66 +141,49 @@ namespace DDD.Infra.SQLServer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Projetos",
+                name: "ProjetoPesquisador",
                 columns: table => new
                 {
-                    ProjetoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProjetoName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProjetoDescricao = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AnosDuracao = table.Column<int>(type: "int", nullable: false),
-                    PesquisadorUserId = table.Column<int>(type: "int", nullable: true)
+                    ProjetoId = table.Column<int>(type: "int", nullable: false),
+                    PesquisadorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Projetos", x => x.ProjetoId);
+                    table.PrimaryKey("PK_ProjetoPesquisador", x => new { x.ProjetoId, x.PesquisadorId });
                     table.ForeignKey(
-                        name: "FK_Projetos_Pesquisador_PesquisadorUserId",
-                        column: x => x.PesquisadorUserId,
+                        name: "FK_ProjetoPesquisador_Pesquisador_PesquisadorId",
+                        column: x => x.PesquisadorId,
                         principalTable: "Pesquisador",
-                        principalColumn: "UserId");
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProjetoPesquisador_Projetos_ProjetoId",
+                        column: x => x.ProjetoId,
+                        principalTable: "Projetos",
+                        principalColumn: "ProjetoId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Avaliacoes",
+                name: "PublicacoesCientificas",
                 columns: table => new
                 {
-                    AvaliacaoId = table.Column<int>(type: "int", nullable: false),
-                    AlunoId = table.Column<int>(type: "int", nullable: false),
-                    ProfessorId = table.Column<int>(type: "int", nullable: false),
-                    SeqCursoId = table.Column<int>(type: "int", nullable: false),
-                    DisciplinaId = table.Column<int>(type: "int", nullable: false),
-                    Ano = table.Column<int>(type: "int", nullable: false),
-                    Etapa = table.Column<int>(type: "int", nullable: false),
-                    AvaliacaoName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Nota = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    PublicacaoId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Titulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DataPublicacao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Conteudo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Link = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProjetoId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Avaliacoes", x => new { x.AvaliacaoId, x.AlunoId, x.ProfessorId, x.SeqCursoId, x.DisciplinaId, x.Ano, x.Etapa });
+                    table.PrimaryKey("PK_PublicacoesCientificas", x => x.PublicacaoId);
                     table.ForeignKey(
-                        name: "FK_Avaliacoes_Aluno_AlunoId",
-                        column: x => x.AlunoId,
-                        principalTable: "Aluno",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Avaliacoes_Disciplinas_DisciplinaId",
-                        column: x => x.DisciplinaId,
-                        principalTable: "Disciplinas",
-                        principalColumn: "DisciplinaId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Avaliacoes_Professores_ProfessorId",
-                        column: x => x.ProfessorId,
-                        principalTable: "Professores",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Avaliacoes_SeqCurso_SeqCursoId",
-                        column: x => x.SeqCursoId,
-                        principalTable: "SeqCurso",
-                        principalColumn: "SeqCursoId",
+                        name: "FK_PublicacoesCientificas_Projetos_ProjetoId",
+                        column: x => x.ProjetoId,
+                        principalTable: "Projetos",
+                        principalColumn: "ProjetoId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -207,13 +192,11 @@ namespace DDD.Infra.SQLServer.Migrations
                 columns: table => new
                 {
                     SeqCursoId = table.Column<int>(type: "int", nullable: false),
-                    DisciplinaId = table.Column<int>(type: "int", nullable: false),
-                    Ano = table.Column<int>(type: "int", nullable: false),
-                    Etapa = table.Column<int>(type: "int", nullable: false)
+                    DisciplinaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Grade", x => new { x.SeqCursoId, x.DisciplinaId, x.Ano, x.Etapa });
+                    table.PrimaryKey("PK_Grade", x => new { x.SeqCursoId, x.DisciplinaId });
                     table.ForeignKey(
                         name: "FK_Grade_Disciplinas_DisciplinaId",
                         column: x => x.DisciplinaId,
@@ -235,7 +218,6 @@ namespace DDD.Infra.SQLServer.Migrations
                     MatriculaId = table.Column<int>(type: "int", nullable: false),
                     AlunoId = table.Column<int>(type: "int", nullable: false),
                     SeqCursoId = table.Column<int>(type: "int", nullable: false),
-                    SituacaoMatriculaId = table.Column<int>(type: "int", nullable: false),
                     DataMatricula = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -253,35 +235,6 @@ namespace DDD.Infra.SQLServer.Migrations
                         principalTable: "SeqCurso",
                         principalColumn: "SeqCursoId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Matriculas_SituacaoMatricula_SituacaoMatriculaId",
-                        column: x => x.SituacaoMatriculaId,
-                        principalTable: "SituacaoMatricula",
-                        principalColumn: "SituacaoId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PublicacoesCientificas",
-                columns: table => new
-                {
-                    PublicacaoId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Titulo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    DataPublicacao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Conteudo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Link = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProjetoId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PublicacoesCientificas", x => x.PublicacaoId);
-                    table.ForeignKey(
-                        name: "FK_PublicacoesCientificas_Projetos_ProjetoId",
-                        column: x => x.ProjetoId,
-                        principalTable: "Projetos",
-                        principalColumn: "ProjetoId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -289,26 +242,6 @@ namespace DDD.Infra.SQLServer.Migrations
                 table: "Aluno",
                 column: "Cpf",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Avaliacoes_AlunoId",
-                table: "Avaliacoes",
-                column: "AlunoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Avaliacoes_DisciplinaId",
-                table: "Avaliacoes",
-                column: "DisciplinaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Avaliacoes_ProfessorId",
-                table: "Avaliacoes",
-                column: "ProfessorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Avaliacoes_SeqCursoId",
-                table: "Avaliacoes",
-                column: "SeqCursoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Grade_DisciplinaId",
@@ -319,11 +252,6 @@ namespace DDD.Infra.SQLServer.Migrations
                 name: "IX_Matriculas_AlunoId",
                 table: "Matriculas",
                 column: "AlunoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Matriculas_SituacaoMatriculaId",
-                table: "Matriculas",
-                column: "SituacaoMatriculaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pesquisador_Cpf",
@@ -338,9 +266,9 @@ namespace DDD.Infra.SQLServer.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Projetos_PesquisadorUserId",
-                table: "Projetos",
-                column: "PesquisadorUserId");
+                name: "IX_ProjetoPesquisador_PesquisadorId",
+                table: "ProjetoPesquisador",
+                column: "PesquisadorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PublicacoesCientificas_ProjetoId",
@@ -357,19 +285,19 @@ namespace DDD.Infra.SQLServer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Avaliacoes");
-
-            migrationBuilder.DropTable(
                 name: "Grade");
 
             migrationBuilder.DropTable(
                 name: "Matriculas");
 
             migrationBuilder.DropTable(
-                name: "PublicacoesCientificas");
+                name: "Professores");
 
             migrationBuilder.DropTable(
-                name: "Professores");
+                name: "ProjetoPesquisador");
+
+            migrationBuilder.DropTable(
+                name: "PublicacoesCientificas");
 
             migrationBuilder.DropTable(
                 name: "Disciplinas");
@@ -381,16 +309,13 @@ namespace DDD.Infra.SQLServer.Migrations
                 name: "SeqCurso");
 
             migrationBuilder.DropTable(
-                name: "SituacaoMatricula");
+                name: "Pesquisador");
 
             migrationBuilder.DropTable(
                 name: "Projetos");
 
             migrationBuilder.DropTable(
                 name: "Cursos");
-
-            migrationBuilder.DropTable(
-                name: "Pesquisador");
 
             migrationBuilder.DropSequence(
                 name: "UserSequence");

@@ -1,3 +1,4 @@
+using DDD.Domain.PosGraduacao;
 using DDD.Infra.SQLServer;
 using DDD.Infra.SQLServer.Interfaces;
 using DDD.Infra.SQLServer.Repositories;
@@ -17,10 +18,9 @@ builder.Services.AddScoped<IProfessorRepository, ProfessorRepositorySqlServer>()
 builder.Services.AddScoped<IPesquisadorRepository, PesquisadorRepositorySqlServer>();
 builder.Services.AddScoped<IProjetoRepository, ProjetoRepositorySqlServer>();
 builder.Services.AddScoped<IPublicacaoCientificaRepository, PublicacaoCientificaRepositorySqlServer>();
+builder.Services.AddScoped<IProjetoPesquisadorRepository, ProjetoPesquisadorRepositorySqlServer>();
 
 /* Didatico */
-builder.Services.AddScoped<ISituacaoMatriculaRepository, SituacaoMatriculaRepositorySqlServer>();
-builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepositorySqlServer>();
 builder.Services.AddScoped<ICursoRepository, CursoRepositorySqlServer>();
 builder.Services.AddScoped<ISeqCursoRepository, SeqCursoRepositorySqlServer>();
 builder.Services.AddScoped<IDisciplinaRepository, DisciplinaRepositorySqlServer>();

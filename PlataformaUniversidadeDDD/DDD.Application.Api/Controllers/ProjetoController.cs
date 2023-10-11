@@ -21,10 +21,10 @@ namespace Universidade.Controllers
             return Ok(_projetoRepository.GetProjeto());
         }
 
-        [HttpGet("{alunoId}/{ano}")]
-        public ActionResult<Projeto> GetById(int id)
+        [HttpGet("{projetoId}")]
+        public ActionResult<Projeto> GetById(int projetoId)
         {
-            return Ok(_projetoRepository.GetProjetoById(id));
+            return Ok(_projetoRepository.GetProjetoById(projetoId));
         }
 
         [HttpPost]
@@ -33,7 +33,7 @@ namespace Universidade.Controllers
         public ActionResult<Projeto> CreateProjeto(Projeto projeto)
         {
             _projetoRepository.InsertProjeto(projeto);
-            return CreatedAtAction(nameof(GetById), new { id = projeto.ProjetoId }, projeto);
+            return CreatedAtAction(nameof(GetById), new { projetoId = projeto.ProjetoId }, projeto);
         }
 
         [HttpPut]

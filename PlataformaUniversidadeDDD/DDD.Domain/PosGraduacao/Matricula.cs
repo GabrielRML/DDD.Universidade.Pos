@@ -15,8 +15,6 @@ namespace DDD.Domain.PosGraduacao
         public Aluno Aluno { get; set; }
         public int SeqCursoId { get; set; }
         public SeqCurso SeqCurso { get; set; }
-        public int SituacaoMatriculaId { get; set; }
-        public SituacaoMatricula SituacaoMatricula { get; set; }
         public DateTime DataMatricula { get; set; }
     }
 }

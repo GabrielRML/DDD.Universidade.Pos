@@ -19,7 +19,7 @@ namespace DDD.Infra.SQLServer.Repositories
             _context = context;
         }
 
-        public void DeletePublicacao(PublicacaoCientifica publicacao)
+        public void Delete(PublicacaoCientifica publicacao)
         {
             try
             {
@@ -34,15 +34,15 @@ namespace DDD.Infra.SQLServer.Repositories
 
         public PublicacaoCientifica GetById(int publicacaoId)
         {
-            return _context.PublicacoesCientificas.Include(p => p.Projeto).FirstOrDefault(p => p.PublicacaoId == publicacaoId);
+            return _context.PublicacoesCientificas.FirstOrDefault(p => p.PublicacaoId == publicacaoId);
         }
 
-        public List<PublicacaoCientifica> GetPublicacoes()
+        public List<PublicacaoCientifica> GetAll()
         {
-            return _context.PublicacoesCientificas.Include(p => p.Projeto).ToList();
+            return _context.PublicacoesCientificas.Include(x => x.Projeto).ToList();
         }
 
-        public void InsertPublicacao(PublicacaoCientifica publicacao)
+        public void Insert(PublicacaoCientifica publicacao)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace DDD.Infra.SQLServer.Repositories
             }
         }
 
-        public void UpdatePublicacao(PublicacaoCientifica publicacao)
+        public void Update(PublicacaoCientifica publicacao)
         {
             try
             {

@@ -10,3 +10,15 @@ C:\Users\User\Source\Repos\DDD.Universidade\PlataformaUniversidadeDDD\DDD.Domain
 C:\Users\User\Source\Repos\DDD.Universidade\PlataformaUniversidadeDDD\DDD.Domain\obj\Debug\net6.0\refint\DDD.Domain.dll
 C:\Users\User\Source\Repos\DDD.Universidade\PlataformaUniversidadeDDD\DDD.Domain\obj\Debug\net6.0\DDD.Domain.pdb
 C:\Users\User\Source\Repos\DDD.Universidade\PlataformaUniversidadeDDD\DDD.Domain\obj\Debug\net6.0\ref\DDD.Domain.dll
+C:\Users\User\source\repos\DDD.Universidade.Pos\PlataformaUniversidadeDDD\DDD.Domain\bin\Debug\net6.0\DDD.Domain.deps.json
+C:\Users\User\source\repos\DDD.Universidade.Pos\PlataformaUniversidadeDDD\DDD.Domain\bin\Debug\net6.0\DDD.Domain.dll
+C:\Users\User\source\repos\DDD.Universidade.Pos\PlataformaUniversidadeDDD\DDD.Domain\bin\Debug\net6.0\DDD.Domain.pdb
+C:\Users\User\source\repos\DDD.Universidade.Pos\PlataformaUniversidadeDDD\DDD.Domain\obj\Debug\net6.0\DDD.Domain.csproj.AssemblyReference.cache
+C:\Users\User\source\repos\DDD.Universidade.Pos\PlataformaUniversidadeDDD\DDD.Domain\obj\Debug\net6.0\DDD.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\source\repos\DDD.Universidade.Pos\PlataformaUniversidadeDDD\DDD.Domain\obj\Debug\net6.0\DDD.Domain.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\DDD.Universidade.Pos\PlataformaUniversidadeDDD\DDD.Domain\obj\Debug\net6.0\DDD.Domain.AssemblyInfo.cs
+C:\Users\User\source\repos\DDD.Universidade.Pos\PlataformaUniversidadeDDD\DDD.Domain\obj\Debug\net6.0\DDD.Domain.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\DDD.Universidade.Pos\PlataformaUniversidadeDDD\DDD.Domain\obj\Debug\net6.0\DDD.Domain.dll
+C:\Users\User\source\repos\DDD.Universidade.Pos\PlataformaUniversidadeDDD\DDD.Domain\obj\Debug\net6.0\refint\DDD.Domain.dll
+C:\Users\User\source\repos\DDD.Universidade.Pos\PlataformaUniversidadeDDD\DDD.Domain\obj\Debug\net6.0\DDD.Domain.pdb
+C:\Users\User\source\repos\DDD.Universidade.Pos\PlataformaUniversidadeDDD\DDD.Domain\obj\Debug\net6.0\ref\DDD.Domain.dll

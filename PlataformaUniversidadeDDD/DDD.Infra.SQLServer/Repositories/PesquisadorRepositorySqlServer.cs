@@ -20,7 +20,7 @@ namespace DDD.Infra.SQLServer.Repositories
             _context = context;
         }
 
-        public void DeletePesquisador(Pesquisador pesquisador)
+        public void Delete(Pesquisador pesquisador)
         {
             try
             {
@@ -29,7 +29,6 @@ namespace DDD.Infra.SQLServer.Repositories
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -39,12 +38,12 @@ namespace DDD.Infra.SQLServer.Repositories
             return _context.Pesquisadores.FirstOrDefault(p => p.UserId == pesquisadorId);
         }
 
-        public List<Pesquisador> GetPesquisadores()
+        public List<Pesquisador> GetAll(string? nome = null)
         {
-            return _context.Pesquisadores.ToList();
+            return _context.Pesquisadores.Where(p => p.Nome.Contains(nome ?? p.Nome)).ToList();
         }
 
-        public void InsertPesquisador(Pesquisador pesquisador)
+        public void Insert(Pesquisador pesquisador)
         {
             try
             {
@@ -57,13 +56,12 @@ namespace DDD.Infra.SQLServer.Repositories
             }
         }
 
-        public void UpdatePesquisador(Pesquisador pesquisador)
+        public void Update(Pesquisador pesquisador)
         {
             try
             {
                 _context.Entry(pesquisador).State = EntityState.Modified;
                 _context.SaveChanges();
-
             }
             catch (Exception ex)
             {

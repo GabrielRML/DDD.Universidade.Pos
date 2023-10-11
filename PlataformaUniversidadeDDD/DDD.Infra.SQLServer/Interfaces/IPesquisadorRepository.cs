@@ -10,10 +10,10 @@ namespace DDD.Infra.SQLServer.Interfaces
 {
     public interface IPesquisadorRepository
     {
-        public List<Pesquisador> GetPesquisadores();
+        public List<Pesquisador> GetAll(string? nome = null);
         public Pesquisador GetById(int pesquisadorId);
-        public void InsertPesquisador(Pesquisador pesquisador);
-        public void UpdatePesquisador(Pesquisador pesquisador);
-        public void DeletePesquisador(Pesquisador pesquisador);
+        public void Insert(Pesquisador pesquisador);
+        public void Update(Pesquisador pesquisador);
+        public void Delete(Pesquisador pesquisador);
     }
 }

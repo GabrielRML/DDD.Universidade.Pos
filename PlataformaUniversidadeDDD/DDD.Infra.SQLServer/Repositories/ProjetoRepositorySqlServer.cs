@@ -38,7 +38,7 @@ namespace DDD.Infra.SQLServer.Repositories
 
         public Projeto GetProjetoById(int id)
         {
-            return _context.Projetos.Find(id); ;
+            return _context.Projetos.FirstOrDefault(x => x.ProjetoId == id);
         }
 
         public void InsertProjeto(Projeto projeto)

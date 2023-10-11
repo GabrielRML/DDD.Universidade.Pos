@@ -6,5 +6,6 @@ namespace DDD.Domain.PosGraduacao
         public string ProjetoName { get; set; }
         public string ProjetoDescricao { get; set; }
         public int AnosDuracao { get; set; }
+        public List<ProjetoPesquisador>? ProjetoPesquisador { get; set; }
     }
 }

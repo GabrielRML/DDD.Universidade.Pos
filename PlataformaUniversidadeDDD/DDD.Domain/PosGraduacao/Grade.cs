@@ -13,7 +13,5 @@ namespace DDD.Domain.PosGraduacao
         public SeqCurso? SeqCurso { get; set; }
         public int DisciplinaId { get; set; }
         public Disciplina? Disciplina { get; set; }
-        public int Ano { get; set; }
-        public int Etapa { get; set; }
     }
 }
